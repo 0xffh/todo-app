@@ -1,0 +1,12 @@
+#!/bin/sh
+
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php ./.generate_jwt.sh todo-app-1234;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php rm -f /var/www/app/config/parameters.yml;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php composer install --quiet;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php composer dump-autoload --optimize --classmap-authoritative;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php bin/console cache:clear --env=prod;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php bin/console cache:clear --env=dev;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php bin/console cache:clear --env=test;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php bin/console app:logs:clear --env=prod;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php bin/console app:logs:clear --env=dev;
+docker-compose -f docker-compose.yml -f docker-compose.local.yml exec -T php bin/console app:logs:clear --env=test;

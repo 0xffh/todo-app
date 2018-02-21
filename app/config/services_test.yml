@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    AppBundle\DataFixtures\:
+        resource: '../../src/AppBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    AppBundle\DataFixtures\UserFixtures:
+        arguments:
+            - '@security.password_encoder'
+        tags: ['doctrine.fixture.orm']

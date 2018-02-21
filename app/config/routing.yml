@@ -1,0 +1,15 @@
+app_web:
+    resource: '@AppBundle/Controller/Web/'
+    type: annotation
+
+app_api:
+    resource: "@AppBundle/Resources/config/routing_api.yml"
+    prefix:   /api
+
+app_api_login_check:
+    path: /api/login_check{_format}
+    defaults:  { _format: ".json" }
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="AppBundle\Entity\User">
+
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">username</option>
+        </constraint>
+
+        <property name="username">
+            <constraint name="NotNull"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">20</option>
+            </constraint>
+        </property>
+
+        <property name="plainPassword">
+            <constraint name="NotNull"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">6</option>
+                <option name="max">20</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/\s/</option>
+                <option name="match">false</option>
+                <option name="message">This field cannot contain space symbol!</option>
+            </constraint>
+        </property>
+
+
+    </class>
+</constraint-mapping>
